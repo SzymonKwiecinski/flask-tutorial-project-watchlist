@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "flask-tutorial-project-4-watchlist"
+version = "0.1.0"
+description = ""
+authors = ["Szymon Kwiecinski"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^3.0.0"
+gunicorn = "^21.2.0"
+python-dotenv = "^1.0.0"
+flask-wtf = "^1.2.1"
+pymongo = "^4.5.0"
+flask-security = "^3.0.0"
+email-validator = "^2.0.0.post2"
+passlib = "^1.7.4"
+
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["d"], version = "^23.9.1"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
