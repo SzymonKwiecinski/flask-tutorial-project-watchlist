@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, session, redirect, request
+from movie_library.forms import MovieForm
 
 pages = Blueprint(
     "pages", __name__, template_folder="templates", static_folder="static"
@@ -7,13 +8,22 @@ pages = Blueprint(
 
 @pages.route("/")
 def index():
+    return render_template("index.html", title="Movie Watchlist")
+
+
+@pages.route("/add", methods=["GET", "POST"])
+def add_movie():
+    form = MovieForm()
+
+    if request.method == "POST":
+        pass
+
     return render_template(
-        "index.html",
-        title="Movie Watchlist"
+        "new_movie.html", title="Movies Watchlist - Add Movie", form=form
     )
 
 
-@pages.get('/toggle-theme')
+@pages.get("/toggle-theme")
 def toggle_theme():
     current_theme = session.get("theme")
     if current_theme == "dark":
