@@ -13,6 +13,7 @@
 }
 
 :root.dark-mode {
+    --text: #fbf2f2;
     --text-dark: #fbf2f2;
     --text-light: #000;
     --text-muted: #595959;
