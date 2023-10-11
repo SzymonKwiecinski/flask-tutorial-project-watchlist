@@ -8,6 +8,7 @@ from flask import (
     request,
     current_app,
     url_for,
+    abort,
 )
 
 from movie_library.models import Movie
@@ -41,11 +42,20 @@ def add_movie():
 
         current_app.db.movie.insert_one(asdict(movie))
 
-        return redirect(url_for(".index"))
+        return redirect(url_for(".movie", _id=movie._id))
 
     return render_template(
         "new_movie.html", title="Movies Watchlist - Add Movie", form=form
     )
+
+
+@pages.get("/movie/<string:_id>")
+def movie(_id: str) -> None:
+    movie_data = current_app.db.movie.find_one({"_id": _id})
+    if not movie_data:
+        abort(404)
+    movie = Movie(**movie_data)
+    return render_template("movie_details.html", movie=movie)
 
 
 @pages.get("/toggle-theme")
